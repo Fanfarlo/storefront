@@ -22,5 +22,4 @@ orderRoutes(app)
 userRoutes(app)
 productRoutes(app)
 dashBoardRoutes(app)
-console.log(orderRoutes)
 export default app

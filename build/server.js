@@ -22,5 +22,4 @@ app.listen(3000, function () {
 (0, users_1.userRoutes)(app);
 (0, products_1.productRoutes)(app);
 (0, dashboards_1.dashBoardRoutes)(app);
-console.log(orders_1.orderRoutes);
 exports.default = app;

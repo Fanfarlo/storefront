@@ -16,7 +16,7 @@ var {
 
 var client = new Pool
 
-console.log(ENV)
+
 
 if (ENV === 'dev'){
   client = new Pool ({
@@ -37,5 +37,5 @@ if (ENV === 'test'){
         host: POSTGRES_HOST,
 })
 }
-
+console.log(ENV)
 export default client
