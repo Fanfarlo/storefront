@@ -4,24 +4,24 @@ This is a project to build the back-end of an online store. The requirements are
 
 ## Setup server
 
-- Server is running on port: 3000
-- Install dependencies: <npm install>
+- Server is running on port: `3000`
+- Install dependencies: `npm install`
 
 ## Setup Postgres database with docker
 
-- Get image: <docker pull postgres>
-- Run container: <docker-compose up -d>
-- Get image name: <docker ps -a>
-- Connect to PSQL: bash <docker exec -it image-name psql -U username database-name>
-- Migrate table: <db-migrate up>
-- Delete table: <db-migrate down>
-- Database ports: 5432:5432
+- Get image: `docker pull postgres`
+- Run container: `docker-compose up -d`
+- Get image name: `docker ps -a`
+- Connect to PSQL bash: `docker exec -it image-name psql -U username database-name`
+- Migrate table: `db-migrate up`
+- Delete table: `db-migrate down`
+- Database ports: `5432:5432`
 
 ## Scripts
 
-- Start build typescript: <npm run build>
-- Start server: <npm run start>
-- Start test: <npm run test>]
-- Start watch: <npm run watch>
-- Start eslint: <npm run lint>
-- Start format: <npm run prettier>
+- Start build typescript: `npm run build`
+- Start server: `npm run start`
+- Start test: `npm run test`
+- Start watch: `npm run watch`
+- Start eslint: `npm run lint`
+- Start format: `npm run prettier`
