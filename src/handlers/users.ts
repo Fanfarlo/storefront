@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 const store = new UserStore();
 export const userRoutes = (app: express.Application) => {
   app.post('/users', create);
-  app.get('/users', verifyAuthToken, index);
+  app.get('/users', index);
   app.get('/users/:id', verifyAuthToken, show);
   app.delete('/users/:id', verifyAuthToken, destroy);
   app.post('/users/authenticate', authenticate);
@@ -41,7 +41,7 @@ const create = async (req: Request, res: Response) => {
   };
   try {
     const newUser = await store.create(user);
-    var token = jwt.sign({ user: newUser }, process.env.TOKEN_SECRET || '');
+    const token = jwt.sign({ user: newUser }, process.env.TOKEN_SECRET || '');
     console.log(newUser);
     res.json(token);
   } catch (error) {

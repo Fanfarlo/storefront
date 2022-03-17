@@ -45,7 +45,7 @@ var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var store = new user_1.UserStore();
 var userRoutes = function (app) {
     app.post('/users', create);
-    app.get('/users', verifyAuthToken, index);
+    app.get('/users', index);
     app.get('/users/:id', verifyAuthToken, show);
     app["delete"]('/users/:id', verifyAuthToken, destroy);
     app.post('/users/authenticate', authenticate);

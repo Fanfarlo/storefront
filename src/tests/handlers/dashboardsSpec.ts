@@ -1,7 +1,6 @@
 import { DashBoardQueries } from '../../services/dashboard';
 import supertest from 'supertest';
 import app from '../../server';
-import { resolve } from 'path';
 import { ProductStore } from '../../models/product';
 
 const request = supertest(app);
