@@ -19,7 +19,11 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db) {
-  var filePath = path.join(__dirname, 'sqls', '20220311141137-products-up.sql');
+  var filePath = path.join(
+    __dirname,
+    'sqls',
+    '20220317021643-order-products-up.sql'
+  );
   return new Promise(function (resolve, reject) {
     fs.readFile(filePath, { encoding: 'utf-8' }, function (err, data) {
       if (err) return reject(err);
@@ -36,7 +40,7 @@ exports.down = function (db) {
   var filePath = path.join(
     __dirname,
     'sqls',
-    '20220311141137-products-down.sql'
+    '20220317021643-order-products-down.sql'
   );
   return new Promise(function (resolve, reject) {
     fs.readFile(filePath, { encoding: 'utf-8' }, function (err, data) {

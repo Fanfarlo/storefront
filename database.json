@@ -1,19 +1,17 @@
-{   
-    "dev": {
-        "driver": "pg",
-        "host": "127.0.0.1",
-        "database": "storefront_dev",
-        "user": "miguelo",
-        "password": "hola"
-    },
+{
+  "dev": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "storefront_dev",
+    "user": "miguelo",
+    "password": "hola"
+  },
 
-
-    "test": {
-        "driver": "pg",
-        "host": "127.0.0.1",
-        "database": "storefront_test",
-        "user": "miguelo",
-        "password": "hola"
-    }
+  "test": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "storefront_test",
+    "user": "miguelo",
+    "password": "hola"
+  }
 }
-
