@@ -6,27 +6,51 @@ import { DashBoardQueries } from '../services/dashboard';
 const dashboard = new DashBoardQueries();
 
 const productsByCategory = async (req: Request, res: Response) => {
-  const products: Product[] = await dashboard.productsByCategory(
-    req.params.category
-  );
-  res.json(products);
+  try {
+    const products: Product[] = await dashboard.productsByCategory(
+      req.params.category
+    );
+    res.json(products);
+  } catch (error) {
+    res.status(400)
+    res.json(error)
+  }
+
 };
 
 const productsTopFivePopular = async (req: Request, res: Response) => {
-  const products = await dashboard.productsTopFivePopular(req.params.top);
-  res.json(products);
+  try {
+    const products = await dashboard.productsTopFivePopular(req.params.top);
+    res.json(products);
+  } catch (error) {
+    res.status(400)
+    res.json(error)
+  }
+ 
 };
 
 const activeOrderByUser = async (req: Request, res: Response) => {
-  const order = await dashboard.currentOrderByUser(req.params.userId);
-  // console.log(order);
-  res.json(order);
+  try {
+    const order = await dashboard.currentOrderByUser(req.params.userId);
+    // console.log(order);
+    res.json(order);
+  } catch (error) {
+    res.status(400)
+    res.json(error)
+  }
+
 };
 
 const completeOrderByUser = async (req: Request, res: Response) => {
-  const order = await dashboard.completeOrderByUser(req.params.userId);
-  // console.log(order);
-  res.json(order);
+  try {
+    const order = await dashboard.completeOrderByUser(req.params.userId);
+    // console.log(order);
+    res.json(order);
+  } catch (error) {
+    res.status(400)
+    res.json(error)
+  }
+
 };
 
 const verifyAuthToken = async (

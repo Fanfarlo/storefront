@@ -2,21 +2,33 @@ import express, { Response, Request, NextFunction } from 'express';
 import { Product, ProductStore } from '../models/product';
 import jwt from 'jsonwebtoken';
 
+
 const store = new ProductStore();
 
 const index = async (req: Request, res: Response) => {
-  const products = await store.index();
-  res.send(products);
+  try {
+    const products = await store.index();
+    res.send(products);
+  } catch (error) {
+    res.status(400)
+    res.json(error)
+  }
+
 };
 
 const show = async (req: Request, res: Response) => {
-  const product = await store.show(req.params.id);
-  res.send(product);
+  try {
+    const product = await store.show(req.params.id);
+    res.send(product);
+  } catch (error) {
+    res.status(400)
+    res.json(error)
+  }
+
 };
 
 const create = async (req: Request, res: Response) => {
   const product: Product = {
-    id: req.params.id,
     name: req.body.name,
     price: req.body.price,
     category: req.body.category

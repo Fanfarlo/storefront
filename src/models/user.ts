@@ -39,7 +39,7 @@ export class UserStore {
   async delete(id: string): Promise<User> {
     try {
       const conn = await client.connect();
-      const sql = 'DELETE FROM users WHERE id=($1)';
+      const sql = 'DELETE FROM users WHERE id=($1) RETURNING id;';
       const result = await conn.query(sql, [id]);
       conn.release();
       return result.rows[0];
@@ -52,7 +52,7 @@ export class UserStore {
     try {
       const conn = await client.connect();
       const sql =
-        'INSERT INTO users (firstname, lastname, password) VALUES ($1,$2,$3) RETURNING *';
+        'INSERT INTO users ( firstname, lastname, password) VALUES ($1,$2,$3) RETURNING *';
       const hash = bcrypt.hashSync(u.password + pepper, parseInt(saltRounds));
       const result = await conn.query(sql, [u.firstName, u.lastName, hash]);
       conn.release();

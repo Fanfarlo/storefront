@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 const store = new UserStore();
 export const userRoutes = (app: express.Application) => {
   app.post('/users', create);
-  app.get('/users', index);
+  app.get('/users', verifyAuthToken, index);
   app.get('/users/:id', verifyAuthToken, show);
   app.delete('/users/:id', verifyAuthToken, destroy);
   app.post('/users/authenticate', authenticate);
@@ -20,8 +20,14 @@ const index = async (req: Request, res: Response) => {
   }
 };
 const destroy = async (req: Request, res: Response) => {
-  const users: User = await store.delete(req.params.id);
-  res.json(users);
+  try {
+    const users: User = await store.delete(req.params.id);
+    res.json(users);
+  } catch (error) {
+    res.status(400)
+    res.json(error)
+  }
+  
 };
 
 const show = async (req: Request, res: Response) => {

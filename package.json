@@ -5,12 +5,13 @@
   "main": "server.ts",
   "scripts": {
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./build --onSuccess \"node ./build/server.js\"",
-    "test": "npm run build && set ENV=test&& db-migrate db:create storefront_test && db-migrate --env test up && npm run jasmine && db-migrate db:drop storefront_test",
+    "test": "npm run build && set ENV=test&& db-migrate db:create storefront_test && db-migrate --env test up && npm run jasmine ",
     "build": "npx tsc",
     "jasmine": "jasmine",
-    "start": "nodemon src/server.ts",
+    "start": "ts-node src/server.ts",
     "lint": "eslint src/*.ts",
-    "prettier": "prettier --config .prettierrc . --write"
+    "prettier": "prettier --config .prettierrc . --write",
+    "psql" : "docker exec -it project2-postgres-1 psql -U miguelo storefront_dev"
   },
   "author": "Udacity",
   "license": "ISC",

@@ -5,22 +5,38 @@ import jwt from 'jsonwebtoken';
 const store = new OrderStore();
 
 const index = async (req: Request, res: Response) => {
-  const orders = await store.index();
-  res.send(orders);
+  try {
+    const orders = await store.index();
+    res.send(orders);
+  } catch (error) {
+    res.status(400)
+    res.json(error)
+  }
 };
 
 const show = async (req: Request, res: Response) => {
-  const orders = await store.show(req.params.id);
-  res.send(orders);
+  try {
+    const orders = await store.show(req.params.id);
+    res.send(orders);
+  } catch (error) {
+    res.status(400)
+    res.json(error)
+  }
 };
 
 const create = async (req: Request, res: Response) => {
   const order: Order = {
     status: req.body.status,
-    userId: req.body.user_id
+    user_id: req.body.user_id
   };
-  const newOrders = await store.create(order);
-  res.send(newOrders);
+  try {
+    const newOrders = await store.create(order);
+    res.send(newOrders);
+  } catch (error) {
+    res.status(400)
+    res.json(error)
+  }
+
 };
 
 const addProducts = async (req: Request, res: Response) => {
@@ -35,25 +51,31 @@ const addProducts = async (req: Request, res: Response) => {
     res.status(400);
     res.json(err);
   }
+};
 
-  const verifyAuthToken = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
-    try {
-      const authorizationHeader = req.headers.authorization || '';
-      const token = authorizationHeader.split('')[1];
-      const decoded = jwt.verify(token, process.env.TOKEN_SECRET || '');
-      next();
-    } catch (error) {
-      res.status(401);
-    }
-  };
+const verifyAuthToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const authorizationHeader = req.headers.authorization || ' ';
+    const token = authorizationHeader.split(' ')[1];
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET || ' ');
+    next();
+  } catch (error) {
+    res.status(401);
+    res.json(`Invalid token ${error}`);
+  }
 };
+
 export const orderRoutes = (app: express.Application) => {
-  app.get('/orders', index);
-  app.get('/orders/:id', show);
-  app.post('/orders', create);
-  app.post('/orders/:id/products', addProducts);
+  app.get('/orders', verifyAuthToken, index);
+  app.get('/orders/:id', verifyAuthToken, show);
+  app.post('/orders', verifyAuthToken, create);
+  app.post('/orders/:id/products', verifyAuthToken, addProducts);
 };
+
+
+
+

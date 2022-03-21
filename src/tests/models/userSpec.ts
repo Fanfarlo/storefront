@@ -1,42 +1,41 @@
-import { UserStore, User } from '../../models/user';
-import supertest from 'supertest';
-import app from '../../server';
+import client from '../../database';
+import { UserStore} from '../../models/user';
 
-const request = supertest(app);
 const store = new UserStore();
 
-describe('User methods', () => {
+describe('User Model Methods', () => {
   it('should have an index method', async () => {
     expect(store.index).toBeDefined();
+    console.log(store.index)
   });
 
   it('should create an user', async () => {
-    const result = await store.create;
-    // console.log(result)
-    expect(result).toBeTruthy;
+    const result = await store.create({
+        firstName:'toti',
+        lastName:'last',
+        password:'pass1'
+    });
+    console.log(result)
+    expect(result.id).toMatch('1');
   });
 
   it('should return a users list', async () => {
     const result = await store.index();
-    // console.log(result)
-    expect(result).toEqual([]);
+    console.log(result)
+    expect(result.length).toEqual(1);
   });
 
   it('should show an user', async () => {
     const result = await store.show('1');
     // console.log(result)
-    expect(result).toBeTruthy;
+    expect(result.id).toMatch('1');
+   
   });
 
   it('should auth an user', async () => {
-    const result = await store.authenticate('testuser', 'hola');
+    const result = await store.authenticate('toti', 'pass1');
     // console.log(result)
     expect(result).toBeTruthy;
   });
 
-  it('should delete an user', async () => {
-    const result = await store.delete('1');
-    // console.log(result)
-    expect(result).toBeTruthy;
-  });
 });
