@@ -18,7 +18,8 @@ const index = async (req: Request, res: Response) => {
 
 const show = async (req: Request, res: Response) => {
   try {
-    const product = await store.show(req.params.id);
+    const id = req.params.id
+    const product = await store.show(id);
     res.send(product);
   } catch (error) {
     res.status(400)

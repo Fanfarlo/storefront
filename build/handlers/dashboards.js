@@ -40,9 +40,9 @@ const activeOrderByUser = async (req, res) => {
 };
 const completeOrderByUser = async (req, res) => {
     try {
-        const order = await dashboard.completeOrderByUser(req.params.userId);
+        const orderComplete = await dashboard.completeOrderByUser(req.params.id);
         // console.log(order);
-        res.json(order);
+        res.json(orderComplete);
     }
     catch (error) {
         res.status(400);
@@ -64,6 +64,6 @@ const dashBoardRoutes = (app) => {
     app.get('/products/category/:category', productsByCategory);
     app.get('/products/top/:top', productsTopFivePopular);
     app.get('/orders/active/:userId', verifyAuthToken, activeOrderByUser);
-    app.get('/orders/complete/:userId', verifyAuthToken, completeOrderByUser);
+    app.get('/complete/:id', verifyAuthToken, completeOrderByUser);
 };
 exports.dashBoardRoutes = dashBoardRoutes;

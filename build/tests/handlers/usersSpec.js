@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
-const database_1 = __importDefault(require("../../database"));
 const server_1 = __importDefault(require("../../server"));
 const request = (0, supertest_1.default)(server_1.default);
 describe('Users endpoint', () => {
@@ -59,16 +58,16 @@ describe('Users endpoint', () => {
             console.error(error.message);
         });
     });
-    afterAll(async () => {
-        const conn = await database_1.default.connect();
-        await conn.query('DELETE FROM order_products');
-        await conn.query('ALTER SEQUENCE order_products_id_seq RESTART WITH 1');
-        await conn.query('DELETE FROM orders');
-        await conn.query('ALTER SEQUENCE orders_id_seq RESTART WITH 1');
-        await conn.query('DELETE FROM products');
-        await conn.query('ALTER SEQUENCE products_id_seq RESTART WITH 1');
-        await conn.query('DELETE FROM users');
-        await conn.query('ALTER SEQUENCE users_id_seq RESTART WITH 1');
-        conn.release();
-    });
+    // afterAll(async() => {
+    //     const conn = await client.connect()
+    //     await conn.query('DELETE FROM order_products')
+    //     await conn.query('ALTER SEQUENCE order_products_id_seq RESTART WITH 1')
+    //     await conn.query('DELETE FROM orders')
+    //     await conn.query('ALTER SEQUENCE orders_id_seq RESTART WITH 1')
+    //     await conn.query('DELETE FROM products')
+    //     await conn.query('ALTER SEQUENCE products_id_seq RESTART WITH 1')
+    //     await conn.query('DELETE FROM users')
+    //     await conn.query('ALTER SEQUENCE users_id_seq RESTART WITH 1')
+    //     conn.release()
+    // })
 });

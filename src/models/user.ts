@@ -17,7 +17,7 @@ export class UserStore {
       const conn = await client.connect();
       const sql = 'SELECT * FROM users';
       const result = await conn.query(sql);
-      conn.release;
+      conn.release();
       return result.rows;
     } catch (error) {
       throw new Error(`Cannot run index action. Error:${error}`);

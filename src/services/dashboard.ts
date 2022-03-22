@@ -41,12 +41,11 @@ export class DashBoardQueries {
     }
   }
 
-  async completeOrderByUser(userId: string): Promise<Order[]> {
+  async completeOrderByUser(id: string): Promise<Order[]> {
     try {
       const conn = await client.connect();
-      const sql =
-        "SELECT product_id, quantity, status FROM orders INNER JOIN order_products ON orders.id=order_products.order_id WHERE orders.user_id=($1) AND orders.status='complete';";
-      const result = await conn.query(sql, [userId]);
+      const sql ="SELECT product_id, quantity, status FROM orders INNER JOIN order_products ON orders.id=order_products.order_id WHERE orders.user_id=($1) AND orders.status='complete';"
+      const result = await conn.query(sql, [id]);
       conn.release();
       return result.rows;
     } catch (error) {

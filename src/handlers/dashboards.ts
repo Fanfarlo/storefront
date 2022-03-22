@@ -43,9 +43,9 @@ const activeOrderByUser = async (req: Request, res: Response) => {
 
 const completeOrderByUser = async (req: Request, res: Response) => {
   try {
-    const order = await dashboard.completeOrderByUser(req.params.userId);
+    const orderComplete = await dashboard.completeOrderByUser(req.params.id);
     // console.log(order);
-    res.json(order);
+    res.json(orderComplete);
   } catch (error) {
     res.status(400)
     res.json(error)
@@ -72,5 +72,5 @@ export const dashBoardRoutes = (app: express.Application) => {
   app.get('/products/category/:category', productsByCategory);
   app.get('/products/top/:top', productsTopFivePopular);
   app.get('/orders/active/:userId', verifyAuthToken, activeOrderByUser);
-  app.get('/orders/complete/:userId', verifyAuthToken, completeOrderByUser);
+  app.get('/complete/:id', verifyAuthToken, completeOrderByUser);
 };

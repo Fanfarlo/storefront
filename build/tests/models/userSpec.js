@@ -9,38 +9,31 @@ describe('User Model Methods', () => {
     });
     it('should create an user', async () => {
         const result = await store.create({
-            firstName: 'toti',
+            firstName: 'usertest2',
             lastName: 'last',
             password: 'pass1'
         });
         console.log(result);
-        expect(result.id).toMatch('1');
-    });
-    it('should return a users list', async () => {
-        const result = await store.index();
-        console.log(result);
-        expect(result.length).toEqual(1);
+        expect(result.id).toMatch('6');
     });
     it('should show an user', async () => {
         const result = await store.show('1');
         // console.log(result)
         expect(result.id).toMatch('1');
     });
+    it('should return a users list', async () => {
+        const result = await store.index();
+        console.log(result);
+        expect(result.length).toEqual(6);
+    });
     it('should auth an user', async () => {
-        const result = await store.authenticate('toti', 'pass1');
+        const result = await store.authenticate('usertest2', 'pass1');
         // console.log(result)
         expect(result).toBeTruthy;
     });
-    //   afterAll(async() => {
-    //     const conn = await client.connect()
-    //     await conn.query('DELETE FROM order_products')
-    //     await conn.query('ALTER SEQUENCE order_products_id_seq RESTART WITH 1')
-    //     await conn.query('DELETE FROM orders')
-    //     await conn.query('ALTER SEQUENCE orders_id_seq RESTART WITH 1')
-    //     await conn.query('DELETE FROM products')
-    //     await conn.query('ALTER SEQUENCE products_id_seq RESTART WITH 1')
-    //     await conn.query('DELETE FROM users')
-    //     await conn.query('ALTER SEQUENCE users_id_seq RESTART WITH 1')
-    //     conn.release()
-    // })
+    it('should delete an user by id', async () => {
+        const result = await store.delete("6");
+        console.log(result);
+        expect(result).toBeTruthy;
+    });
 });

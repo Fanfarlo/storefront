@@ -37,7 +37,7 @@ export class OrderStore {
       const sql =
         'INSERT INTO orders (status, user_id) VALUES ($1, $2) RETURNING *;';
       const result = await conn.query(sql, [o.status, o.user_id]);
-      conn.release;
+      conn.release();
       return result.rows[0];
     } catch (error) {
       throw new Error(`Cannot run create action. Error:${error}`);
@@ -49,19 +49,7 @@ export class OrderStore {
     productId: string,
     quantity: number
   ): Promise<Order> {
-    // try {
-    // const conn = await client.connect()
-    // const orderSql = 'SELECT * FROM orders WHERE id=($1)'
-    // const result = await conn.query(orderSql,[orderId])
-    // const orderResult = result.rows[0]
 
-    // if (orderResult.status !== "active"){
-    //     throw new Error(`Could not add product ${productId} to order ${orderId} because order status is ${orderResult.status}`)
-    // }
-    // conn.release()
-    // } catch (error) {
-    //     throw new Error(`${error}`)
-    // }
     try {
       const conn = await client.connect();
       const sql =

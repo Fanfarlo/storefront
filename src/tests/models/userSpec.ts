@@ -9,21 +9,15 @@ describe('User Model Methods', () => {
     console.log(store.index)
   });
 
-  it('should create an user', async () => {
-    const result = await store.create({
-        firstName:'toti',
-        lastName:'last',
-        password:'pass1'
+    it('should create an user', async () => {
+      const result = await store.create({
+          firstName:'usertest2',
+          lastName:'last',
+          password:'pass1'
+      });
+      console.log(result)
+      expect(result.id).toMatch('6');
     });
-    console.log(result)
-    expect(result.id).toMatch('1');
-  });
-
-  it('should return a users list', async () => {
-    const result = await store.index();
-    console.log(result)
-    expect(result.length).toEqual(1);
-  });
 
   it('should show an user', async () => {
     const result = await store.show('1');
@@ -31,11 +25,21 @@ describe('User Model Methods', () => {
     expect(result.id).toMatch('1');
    
   });
+  it('should return a users list', async () => {
+    const result = await store.index();
+    console.log(result)
+    expect(result.length).toEqual(6);
+  });
 
   it('should auth an user', async () => {
-    const result = await store.authenticate('toti', 'pass1');
+    const result = await store.authenticate('usertest2', 'pass1');
     // console.log(result)
     expect(result).toBeTruthy;
   });
 
+  it('should delete an user by id', async () => {
+      const result = await store.delete("6")
+      console.log(result)
+      expect(result).toBeTruthy
+  })
 });

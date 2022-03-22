@@ -42,11 +42,11 @@ class DashBoardQueries {
             throw new Error(`Cannot get action to run. Error ${error} `);
         }
     }
-    async completeOrderByUser(userId) {
+    async completeOrderByUser(id) {
         try {
             const conn = await database_1.default.connect();
             const sql = "SELECT product_id, quantity, status FROM orders INNER JOIN order_products ON orders.id=order_products.order_id WHERE orders.user_id=($1) AND orders.status='complete';";
-            const result = await conn.query(sql, [userId]);
+            const result = await conn.query(sql, [id]);
             conn.release();
             return result.rows;
         }

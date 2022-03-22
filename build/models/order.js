@@ -35,7 +35,7 @@ class OrderStore {
             const conn = await database_1.default.connect();
             const sql = 'INSERT INTO orders (status, user_id) VALUES ($1, $2) RETURNING *;';
             const result = await conn.query(sql, [o.status, o.user_id]);
-            conn.release;
+            conn.release();
             return result.rows[0];
         }
         catch (error) {
@@ -43,18 +43,6 @@ class OrderStore {
         }
     }
     async addProducts(orderId, productId, quantity) {
-        // try {
-        // const conn = await client.connect()
-        // const orderSql = 'SELECT * FROM orders WHERE id=($1)'
-        // const result = await conn.query(orderSql,[orderId])
-        // const orderResult = result.rows[0]
-        // if (orderResult.status !== "active"){
-        //     throw new Error(`Could not add product ${productId} to order ${orderId} because order status is ${orderResult.status}`)
-        // }
-        // conn.release()
-        // } catch (error) {
-        //     throw new Error(`${error}`)
-        // }
         try {
             const conn = await database_1.default.connect();
             const sql = 'INSERT INTO order_products (order_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *;';

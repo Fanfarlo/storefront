@@ -9,9 +9,9 @@ const request = (0, supertest_1.default)(server_1.default);
 describe('Product methods', () => {
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo2LCJmaXJzdG5hbWUiOiJNaWd1ZWwiLCJsYXN0bmFtZSI6Ik1hbHBhcnRpZGEiLCJwYXNzd29yZCI6IiQyYiQxMCRaa0g4SFBWbmRRWkZESzQvbGFFY2F1NUlTTzNkTndUN1ZVTTR3Lkp6TjNaSm9QeHA4WXRtTyJ9LCJpYXQiOjE2NDcwNjQ0Mzd9.4fgYpSViA0PBe9qyJbj3mg71_05xmq1xp_QA7_ipZoE';
     const producTest = {
-        name: 'producttest',
-        price: 3200,
-        category: 'Asus'
+        name: 'ZenBook',
+        price: 1500,
+        category: 'ASUS'
     };
     it('should create a product', async () => {
         await request

@@ -14,7 +14,7 @@ class UserStore {
             const conn = await database_1.default.connect();
             const sql = 'SELECT * FROM users';
             const result = await conn.query(sql);
-            conn.release;
+            conn.release();
             return result.rows;
         }
         catch (error) {

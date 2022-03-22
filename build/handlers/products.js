@@ -19,7 +19,8 @@ const index = async (req, res) => {
 };
 const show = async (req, res) => {
     try {
-        const product = await store.show(req.params.id);
+        const id = req.params.id;
+        const product = await store.show(id);
         res.send(product);
     }
     catch (error) {
