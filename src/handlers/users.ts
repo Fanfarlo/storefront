@@ -24,10 +24,9 @@ const destroy = async (req: Request, res: Response) => {
     const users: User = await store.delete(req.params.id);
     res.json(users);
   } catch (error) {
-    res.status(400)
-    res.json(error)
+    res.status(400);
+    res.json(error);
   }
-  
 };
 
 const show = async (req: Request, res: Response) => {

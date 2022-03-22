@@ -49,7 +49,6 @@ export class OrderStore {
     productId: string,
     quantity: number
   ): Promise<Order> {
-
     try {
       const conn = await client.connect();
       const sql =

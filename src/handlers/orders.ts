@@ -9,8 +9,8 @@ const index = async (req: Request, res: Response) => {
     const orders = await store.index();
     res.send(orders);
   } catch (error) {
-    res.status(400)
-    res.json(error)
+    res.status(400);
+    res.json(error);
   }
 };
 
@@ -19,8 +19,8 @@ const show = async (req: Request, res: Response) => {
     const orders = await store.show(req.params.id);
     res.send(orders);
   } catch (error) {
-    res.status(400)
-    res.json(error)
+    res.status(400);
+    res.json(error);
   }
 };
 
@@ -33,10 +33,9 @@ const create = async (req: Request, res: Response) => {
     const newOrders = await store.create(order);
     res.send(newOrders);
   } catch (error) {
-    res.status(400)
-    res.json(error)
+    res.status(400);
+    res.json(error);
   }
-
 };
 
 const addProducts = async (req: Request, res: Response) => {
@@ -75,7 +74,3 @@ export const orderRoutes = (app: express.Application) => {
   app.post('/orders', verifyAuthToken, create);
   app.post('/orders/:id/products', verifyAuthToken, addProducts);
 };
-
-
-
-

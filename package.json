@@ -11,7 +11,7 @@
     "start": "ts-node src/server.ts",
     "lint": "eslint src/*.ts",
     "prettier": "prettier --config .prettierrc . --write",
-    "psql" : "docker exec -it project2-postgres-1 psql -U miguelo storefront_dev"
+    "psql": "docker exec -it project2-postgres-1 psql -U miguelo storefront_dev"
   },
   "author": "Udacity",
   "license": "ISC",
