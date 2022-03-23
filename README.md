@@ -7,6 +7,16 @@ This is a project to build the back-end of an online store. The requirements are
 - Server is running on port: `3000`
 - Install dependencies: `npm install`
 
+## Create env file
+- POSTGRES_HOST=127.0.0.1
+- POSTGRES_DB=storefront_dev
+- POSTGRES_TEST_DB=storefront_test
+- POSTGRES_USER=miguelo
+- POSTGRES_PASSWORD=yourpassword
+- ENV=dev 
+- BCRYPT_PASSWORD=yourtring
+- SALT_ROUNDS=10
+- TOKEN_SECRET=yourstring
 ## Setup Postgres database with docker
 
 - Get image: `docker pull postgres`
