@@ -15,9 +15,9 @@ This is a project to build the back-end of an online store. The requirements are
 - POSTGRES_USER=miguelo
 - POSTGRES_PASSWORD=yourpassword
 - ENV=dev 
-- BCRYPT_PASSWORD=yourtring
+- BCRYPT_PASSWORD=storebcrypt
 - SALT_ROUNDS=10
-- TOKEN_SECRET=yourstring
+- TOKEN_SECRET=storesecret
 
 ## Setup Postgres database with docker
 
