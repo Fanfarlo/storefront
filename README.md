@@ -13,7 +13,7 @@ This is a project to build the back-end of an online store. The requirements are
 - POSTGRES_DB=storefront_dev
 - POSTGRES_TEST_DB=storefront_test
 - POSTGRES_USER=miguelo
-- POSTGRES_PASSWORD=yourpassword
+- POSTGRES_PASSWORD=hola
 - ENV=dev 
 - BCRYPT_PASSWORD=storebcrypt
 - SALT_ROUNDS=10
